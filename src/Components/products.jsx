@@ -6,9 +6,9 @@ import "../StyleSheets/products.css";
 
 const Products = ({cart,setCart}) => {
   const [products, setProducts] = useState(getProducts());
-  
   const [cartItemsQnt, setCartItemsQnt] = useState(0);
 
+  // Updates the quantity of a product in the state based on user input, ensuring it's greater than 0.
   const handleQunatityBtn = (e, prdIndex) => {
     if (e.target.value > 0) {
       const updatedProducts = [...products];
@@ -17,7 +17,9 @@ const Products = ({cart,setCart}) => {
     }
   };
 
+  // Handles the "Add to Cart" or "Remove" button click for a product, updating UI and cart state accordingly.
   const handleCartBtn = (e, prdIndex) => {
+    // If the button is in "add" state, adds the product to the cart; otherwise, removes it.
     if (e.target.value === 'add') {
       addPrdToCart(products[prdIndex]);
       e.target.innerHTML = 'Remove';
@@ -31,16 +33,16 @@ const Products = ({cart,setCart}) => {
     }
   };
 
+  // Adds a product to the cart, updating the cart state and total cart items quantity.
   const addPrdToCart = (prd) => {
     const newCartItem = { prdName: prd.prdName, quantity: prd.quantity || 1 };
-    console.log('Cart:', newCartItem);
     setCart([...cart, newCartItem]);
     setCartItemsQnt(cartItemsQnt+newCartItem.quantity)
   };
 
-  const removePrdFromCart = (prd) => {
+  // Removes a product from the cart, updating the cart state and total cart items quantity.
+  const removePrdFromCart = (prd) => { 
     const newCart = cart.filter((item) => item.prdName !== prd.prdName);
-    console.log('Cart:', newCart);
     setCart(newCart);
     setCartItemsQnt(cartItemsQnt-prd.quantity)
   };

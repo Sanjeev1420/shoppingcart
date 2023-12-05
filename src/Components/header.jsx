@@ -6,6 +6,7 @@ import logo from "../Images/applogo.png";
 import carticon from "../Images/cartIcon.png";
 
 const Header = ({ cart }) => {
+  // Calculates and returns the total quantity of items in the shopping cart.
   const getTotalCartQuantity = (cart) => {
     return cart.reduce((netQnt, item) => netQnt + parseInt(item.quantity), 0);
   };
